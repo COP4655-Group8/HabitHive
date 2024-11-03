@@ -48,7 +48,7 @@ HabitHive is a habit-tracking app that helps users build positive routines by ga
 
 ### 2. Screen Archetypes
 
-- [ ] [**Login Screen**]
+- [x] [**Login Screen**]
 * [Required User Feature: User can log in.]
 - [ ] [**Register Screen**]
 * [Required User Feature: User can register an account.]
