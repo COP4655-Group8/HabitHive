@@ -9,6 +9,7 @@ Original App Design Project - README Template
 2. [Product Spec](#Product-Spec)
 3. [Wireframes](#Wireframes)
 4. [Schema](#Schema)
+5. [Build Progress](#Build-Progress)
 
 ## Overview
 
@@ -117,3 +118,14 @@ HabitHive is a habit-tracking app that helps users build positive routines by ga
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
+
+
+## Build Progress
+Progress #1: Login/Register
+<div>
+    <a href="https://www.loom.com/share/e61ad0234c234862aa570ae08387aab7">
+    </a>
+    <a href="https://www.loom.com/share/e61ad0234c234862aa570ae08387aab7">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/e61ad0234c234862aa570ae08387aab7-837250457ac2a0d6-full-play.gif">
+    </a>
+  </div>
