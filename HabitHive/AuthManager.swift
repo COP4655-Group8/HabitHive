@@ -1,10 +1,3 @@
-//
-//  AuthManager.swift
-//  HabitHive
-//
-//  Created by Anthony Irizarry on 10/29/24.
-//
-
 import Foundation
 import FirebaseAuth
 
