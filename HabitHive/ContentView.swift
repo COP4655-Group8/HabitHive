@@ -1,24 +1,40 @@
-//
-//  ContentView.swift
-//  HabitHive
-//
-//  Created by Anthony Irizarry on 10/28/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(AuthManager.self) var authManager
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world! Test")
-        }
-        .padding()
+        TabView {
+            NavigationStack {
+                HomeView()
+            }
+            .tabItem {
+                Label("Home", systemImage: "house")
+            }
+            NavigationStack {
+                HabitListView()
+            }
+                .tabItem{
+                    Label("Habits", systemImage: "list.clipboard")
+                }
+            NavigationStack {
+                ShopView()
+            }
+                .tabItem{
+                    Label("Shop", systemImage:"dollarsign.circle")
+                }
+            
+            NavigationStack {
+                AchievementsView()
+            }
+                .tabItem{
+                    Label("Achievements", systemImage:"medal.star")
+                }
+            }
     }
 }
 
 #Preview {
     ContentView()
+        .environment(AuthManager())
 }
