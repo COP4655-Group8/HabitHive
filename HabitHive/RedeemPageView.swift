@@ -4,13 +4,6 @@
 //
 //  Created by Chrisopher Franco on 10/31/24.
 //
-
-//
-//  RedeemPageView.swift
-//  HabitHive
-//
-//  Created by Chrisopher Franco on 10/31/24.
-//
 import SwiftUI
 
 struct GiftCard: Identifiable {
