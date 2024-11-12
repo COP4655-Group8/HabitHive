@@ -21,6 +21,8 @@
 		939C7C172CDEE944001A337A /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C7C162CDEE944001A337A /* HabitListView.swift */; };
 		939C7C192CDEE954001A337A /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C7C182CDEE954001A337A /* ShopView.swift */; };
 		939C7C1B2CDEE960001A337A /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C7C1A2CDEE960001A337A /* AchievementsView.swift */; };
+		939C7C1D2CE16F4A001A337A /* HabitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C7C1C2CE16F4A001A337A /* HabitManager.swift */; };
+		939C7C1F2CE170E6001A337A /* HabitResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C7C1E2CE170E6001A337A /* HabitResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		939C7C162CDEE944001A337A /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		939C7C182CDEE954001A337A /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		939C7C1A2CDEE960001A337A /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
+		939C7C1C2CE16F4A001A337A /* HabitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitManager.swift; sourceTree = "<group>"; };
+		939C7C1E2CE170E6001A337A /* HabitResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +76,6 @@
 		939C7BEE2CD071BE001A337A /* HabitHive */ = {
 			isa = PBXGroup;
 			children = (
-				939C7BEF2CD071BE001A337A /* HabitHiveApp.swift */,
-				939C7C012CD1A4BA001A337A /* AuthManager.swift */,
 				939C7BFD2CD19FB2001A337A /* LoginView.swift */,
 				939C7BFF2CD1A4A2001A337A /* RegisterView.swift */,
 				939C7BF12CD071BE001A337A /* ContentView.swift */,
@@ -81,6 +83,10 @@
 				939C7C162CDEE944001A337A /* HabitListView.swift */,
 				939C7C182CDEE954001A337A /* ShopView.swift */,
 				939C7C1A2CDEE960001A337A /* AchievementsView.swift */,
+				939C7BEF2CD071BE001A337A /* HabitHiveApp.swift */,
+				939C7C012CD1A4BA001A337A /* AuthManager.swift */,
+				939C7C1C2CE16F4A001A337A /* HabitManager.swift */,
+				939C7C1E2CE170E6001A337A /* HabitResponse.swift */,
 				939C7BF32CD071C0001A337A /* Assets.xcassets */,
 				939C7C032CD1A672001A337A /* GoogleService-Info.plist */,
 				939C7BF52CD071C0001A337A /* Preview Content */,
@@ -185,7 +191,9 @@
 				939C7C1B2CDEE960001A337A /* AchievementsView.swift in Sources */,
 				939C7C002CD1A4A2001A337A /* RegisterView.swift in Sources */,
 				939C7BF22CD071BE001A337A /* ContentView.swift in Sources */,
+				939C7C1D2CE16F4A001A337A /* HabitManager.swift in Sources */,
 				939C7C0E2CD1B071001A337A /* HomeView.swift in Sources */,
+				939C7C1F2CE170E6001A337A /* HabitResponse.swift in Sources */,
 				939C7BF02CD071BE001A337A /* HabitHiveApp.swift in Sources */,
 				939C7C022CD1A4BA001A337A /* AuthManager.swift in Sources */,
 				939C7C192CDEE954001A337A /* ShopView.swift in Sources */,
