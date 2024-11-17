@@ -51,15 +51,15 @@ HabitHive is a habit-tracking app that helps users build positive routines by ga
 
 - [x] [**Login Screen**]
 * [Required User Feature: User can log in.]
-- [ ] [**Register Screen**]
+- [x] [**Register Screen**]
 * [Required User Feature: User can register an account.]
-- [ ] [**Home Screen**]
+- [x] [**Home Screen**]
 * [Required User Feature: User can access the home, or main menu.]
 - [ ] [**Habit Creation Screen**]
 * [Required User Feature: User can create habits.]
 - [ ] [**Habit List Screen**]
 * [Required User Feature: User can view created habits.]
-- [ ] [**Points Shop Screen**]
+- [x] [**Points Shop Screen**]
 * [Required User Feature: User can redeem their points for rewards.]
 
 ### 3. Navigation
