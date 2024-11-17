@@ -7,18 +7,8 @@ class HabitManager: ObservableObject {
     
     private let dataBase = Firestore.firestore()
     
-    
-    // Adding mock habits for testing without Firestore
-    init(isMocked: Bool = true) {
-          if isMocked {
-              savedHabits = HabitResponse.mockedHabits
-          } else {
-              getSavedHabits()
-          }
-      }
-    
     func getSavedHabits() {
-        dataBase.collectionGroup("savedHabits").addSnapshotListener { querySnapshot, error in
+        dataBase.collection("savedHabits").addSnapshotListener { querySnapshot, error in
             guard let documents = querySnapshot?.documents else {
                 print("Error fetching documents \(String(describing: error))")
                 return
@@ -35,7 +25,7 @@ class HabitManager: ObservableObject {
                     return nil
                 }
                 
-                return HabitResponse.ResponseData(description: description, frequency: frequency)
+                return HabitResponse.ResponseData(id: document.documentID, description: description, frequency: frequency)
             }
             
             DispatchQueue.main.async {
@@ -47,7 +37,8 @@ class HabitManager: ObservableObject {
     func saveHabit(description: String, frequency: String) {
         let habitData: [String: Any] = [
             "description": description,
-            "frequency": frequency
+            "frequency": frequency,
+            "completed": false // Add a completed field to track completion
         ]
         
         dataBase.collection("savedHabits").addDocument(data: habitData) { error in
@@ -55,6 +46,35 @@ class HabitManager: ObservableObject {
                 print("Error sending habit to Firestore: \(error)")
             } else {
                 print("Habit successfully sent: \(description)")
+                // After saving a new habit, fetch the updated list
+                self.getSavedHabits()  // Reload habits to reflect the newly added one
+            }
+        }
+    }
+    
+    func updateHabitCompletion(_ habit: HabitResponse.ResponseData) {
+        let habitRef = dataBase.collection("savedHabits").document(habit.id)
+        habitRef.updateData([
+            "completed": true // Mark the habit as completed
+        ]) { error in
+            if let error = error {
+                print("Error updating habit completion: \(error)")
+            } else {
+                print("Habit marked as completed.")
+            }
+        }
+    }
+    
+    func deleteHabit(_ habit: HabitResponse.ResponseData) {
+        dataBase.collection("savedHabits").document(habit.id).delete { error in
+            if let error = error {
+                print("Error deleting habit: \(error)")
+            } else {
+                print("Habit deleted successfully.")
+                // Remove habit locally from the list after deleting
+                DispatchQueue.main.async {
+                    self.savedHabits.removeAll { $0.id == habit.id }
+                }
             }
         }
     }

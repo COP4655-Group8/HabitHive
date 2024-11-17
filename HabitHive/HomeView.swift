@@ -1,10 +1,12 @@
 import SwiftUI
-import FirebaseFirestore
+
+import SwiftUI
 
 struct HomeView: View {
+    @Environment(AuthManager.self) var authManager
     @StateObject private var habitManager = HabitManager()
     @State private var isShowingAddHabit = false
-    @State private var checkedHabits: [UUID: Bool] = [:] // Dictionary to track check status of habits
+    @State private var checkedHabits: [String: Bool] = [:]
     
     var body: some View {
         NavigationStack {
@@ -32,8 +34,10 @@ struct HomeView: View {
                             }
                             Spacer()
                             Button(action: {
-                                // Toggle the check status for this habit
                                 checkedHabits[habit.id] = !(checkedHabits[habit.id] ?? false)
+                                if checkedHabits[habit.id] == true {
+                                    habitManager.updateHabitCompletion(habit)
+                                }
                             }) {
                                 Image(systemName: checkedHabits[habit.id] == true ? "checkmark.square.fill" : "square")
                                     .foregroundColor(.green)
@@ -46,7 +50,17 @@ struct HomeView: View {
                 
                 Spacer()
             }
+            .onAppear {
+                habitManager.getSavedHabits()
+            }
             .navigationBarItems(
+                leading: Button(action: {
+                    authManager.signOut() // Call the signOut method
+                }) {
+                    Text("Logout")
+                        .foregroundColor(.blue) // Make the text blue
+                        .fontWeight(.bold)
+                },
                 trailing: Button(action: {
                     isShowingAddHabit = true
                 }) {
