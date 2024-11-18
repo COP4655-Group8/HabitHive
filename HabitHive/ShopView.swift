@@ -18,9 +18,10 @@ struct ShopView: View {
     @State private var showPopup = false
     @State private var showRedeemedPopup = false
     @State private var selectedGiftCard: GiftCard? = nil
-    @State private var redeemedCards: [GiftCard] = [] // Track redeemed cards
+    @State private var redeemedCards: [GiftCard] = []
     @State private var showRedemptionCodePopup = false
     @State private var redemptionCode: String = ""
+    @State private var showCopyAlert = false
 
     let giftCards = [
         GiftCard(name: "Amazon Gift Card", pointCost: 300, imageName: "amazon_gift_card"),
@@ -199,11 +200,24 @@ struct ShopView: View {
                             .font(.title)
                             .padding(.bottom, 10)
                         
-                        Text(redemptionCode)
-                            .font(.headline)
-                            .padding()
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
+                        HStack {
+                            Text(redemptionCode)
+                                .font(.headline)
+                                .padding()
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(10)
+                            
+                            Button(action: {
+                                UIPasteboard.general.string = redemptionCode
+                                showCopyAlert = true
+                            }) {
+                                Image(systemName: "doc.on.doc") // Placeholder for your copy icon
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                                    .padding()
+                                    .foregroundColor(.black)
+                            }
+                        }
                         
                         Button(action: {
                             showRedemptionCodePopup = false
@@ -221,6 +235,25 @@ struct ShopView: View {
                     .background(Color.white)
                     .cornerRadius(20)
                     .shadow(radius: 20)
+                }
+                
+                // Copy Alert
+                if showCopyAlert {
+                    VStack {
+                        Text("Code copied to clipboard!")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.black.opacity(0.8))
+                            .cornerRadius(10)
+                            .foregroundColor(.white)
+                            .padding(.top, 20)
+                    }
+                    .transition(.opacity)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            showCopyAlert = false
+                        }
+                    }
                 }
             }
         }
