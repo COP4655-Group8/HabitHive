@@ -1,25 +1,39 @@
 import SwiftUI
 
 struct HabitListView: View {
-    
-    @State var habitManager: HabitManager
-    
-    init(isMocked: Bool = false){
-        habitManager = HabitManager(isMocked: isMocked)
-    }
+    @ObservedObject var habitManager: HabitManager  // Receive the habitManager here
     
     var body: some View {
-        Text("Habit List")
-        Spacer()
-        List {
-            ForEach(habitManager.savedHabits, id: \.self) { habit in
-                Text(habit.description)
+        VStack {
+            Text("Habit List")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding()
+            
+            List {
+                ForEach(habitManager.savedHabits, id: \.id) { habit in
+                    HStack {
+                        Text(habit.description)
+                        Spacer()
+                        Button(action: {
+                            habitManager.deleteHabit(habit) // Delete habit from Firestore
+                        }) {
+                            Image(systemName: "trash")
+                                .foregroundColor(.red)
+                                .font(.title2)
+                        }
+                    }
                 }
+                .onDelete(perform: { indexSet in
+                    indexSet.forEach { index in
+                        let habit = habitManager.savedHabits[index]
+                        habitManager.deleteHabit(habit) // Delete habit on swipe delete
+                    }
+                })
+            }
         }
-        Spacer()
+        .onAppear {
+            habitManager.getSavedHabits() // Load habits on appear
+        }
     }
-}
-
-#Preview {
-    HabitListView(isMocked: true)
 }

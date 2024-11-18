@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E864F602CE68402000559BA /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E864F5F2CE683FD000559BA /* AddHabitView.swift */; };
 		939C7BF02CD071BE001A337A /* HabitHiveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C7BEF2CD071BE001A337A /* HabitHiveApp.swift */; };
 		939C7BF22CD071BE001A337A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C7BF12CD071BE001A337A /* ContentView.swift */; };
 		939C7BF42CD071C0001A337A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 939C7BF32CD071C0001A337A /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E864F5F2CE683FD000559BA /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		939C7BEC2CD071BE001A337A /* HabitHive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitHive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		939C7BEF2CD071BE001A337A /* HabitHiveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitHiveApp.swift; sourceTree = "<group>"; };
 		939C7BF12CD071BE001A337A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				939C7BFF2CD1A4A2001A337A /* RegisterView.swift */,
 				939C7BF12CD071BE001A337A /* ContentView.swift */,
 				939C7C0D2CD1B071001A337A /* HomeView.swift */,
+				1E864F5F2CE683FD000559BA /* AddHabitView.swift */,
 				939C7C162CDEE944001A337A /* HabitListView.swift */,
 				939C7C182CDEE954001A337A /* ShopView.swift */,
 				939C7C1A2CDEE960001A337A /* AchievementsView.swift */,
@@ -192,6 +195,7 @@
 				939C7C002CD1A4A2001A337A /* RegisterView.swift in Sources */,
 				939C7BF22CD071BE001A337A /* ContentView.swift in Sources */,
 				939C7C1D2CE16F4A001A337A /* HabitManager.swift in Sources */,
+				1E864F602CE68402000559BA /* AddHabitView.swift in Sources */,
 				939C7C0E2CD1B071001A337A /* HomeView.swift in Sources */,
 				939C7C1F2CE170E6001A337A /* HabitResponse.swift in Sources */,
 				939C7BF02CD071BE001A337A /* HabitHiveApp.swift in Sources */,
