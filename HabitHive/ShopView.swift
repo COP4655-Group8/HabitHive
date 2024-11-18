@@ -43,8 +43,9 @@ struct ShopView: View {
                     }) {
                         Text("View Redeemed Cards")
                             .foregroundColor(.white)
+                            .bold()
                             .padding()
-                            .background(Color.blue)
+                            .background(Color.orange)
                             .cornerRadius(8)
                             .padding(.bottom)
                     }
@@ -75,7 +76,7 @@ struct ShopView: View {
                                         .foregroundColor(.white)
                                         .padding(.horizontal)
                                         .padding(.vertical, 6)
-                                        .background(Color.blue)
+                                        .background(Color.green)
                                         .cornerRadius(8)
                                 }
                             } else {
@@ -175,7 +176,8 @@ struct ShopView: View {
                             Text("Close")
                                 .padding()
                                 .frame(maxWidth: .infinity)
-                                .background(Color.blue)
+                                .background(Color.orange)
+                                .bold()
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                                 .padding(.horizontal)
@@ -211,7 +213,7 @@ struct ShopView: View {
                                 UIPasteboard.general.string = redemptionCode
                                 showCopyAlert = true
                             }) {
-                                Image(systemName: "doc.on.doc") // Placeholder for your copy icon
+                                Image(systemName: "doc.on.doc") //copy
                                     .resizable()
                                     .frame(width: 24, height: 24)
                                     .padding()
@@ -225,7 +227,7 @@ struct ShopView: View {
                             Text("Close")
                                 .padding()
                                 .frame(maxWidth: .infinity)
-                                .background(Color.green)
+                                .background(Color.black)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                                 .padding(.horizontal)
@@ -280,3 +282,4 @@ struct Shop_Previews: PreviewProvider {
         ShopView()
     }
 }
+
