@@ -1,6 +1,7 @@
 import Foundation
 import FirebaseFirestore
 import Combine
+import FirebaseAuth
 
 class HabitManager: ObservableObject {
     @Published var savedHabits: [HabitResponse.ResponseData] = []
@@ -8,37 +9,45 @@ class HabitManager: ObservableObject {
     private let dataBase = Firestore.firestore()
     
     func getSavedHabits() {
-        dataBase.collection("savedHabits").addSnapshotListener { querySnapshot, error in
-            guard let documents = querySnapshot?.documents else {
-                print("Error fetching documents \(String(describing: error))")
-                return
-            }
-            
-            let savedHabits = documents.compactMap { document -> HabitResponse.ResponseData? in
-                let data = document.data()
-                
-                guard
-                    let description = data["description"] as? String,
-                    let frequency = data["frequency"] as? String
-                else {
-                    print("Error decoding document into habit")
-                    return nil
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+
+        dataBase.collection("savedHabits")
+            .whereField("userId", isEqualTo: userId) // Filter habits by userId
+            .addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    print("Error fetching documents \(String(describing: error))")
+                    return
                 }
                 
-                return HabitResponse.ResponseData(id: document.documentID, description: description, frequency: frequency)
+                let savedHabits = documents.compactMap { document -> HabitResponse.ResponseData? in
+                    let data = document.data()
+                    
+                    guard
+                        let description = data["description"] as? String,
+                        let frequency = data["frequency"] as? String
+                    else {
+                        print("Error decoding document into habit")
+                        return nil
+                    }
+                    
+                    return HabitResponse.ResponseData(id: document.documentID, description: description, frequency: frequency)
+                }
+                
+                DispatchQueue.main.async {
+                    self.savedHabits = savedHabits
+                }
             }
-            
-            DispatchQueue.main.async {
-                self.savedHabits = savedHabits
-            }
-        }
     }
+
     
     func saveHabit(description: String, frequency: String) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+
         let habitData: [String: Any] = [
             "description": description,
             "frequency": frequency,
-            "completed": false // Add a completed field to track completion
+            "completed": false,
+            "userId": userId
         ]
         
         dataBase.collection("savedHabits").addDocument(data: habitData) { error in
@@ -46,11 +55,11 @@ class HabitManager: ObservableObject {
                 print("Error sending habit to Firestore: \(error)")
             } else {
                 print("Habit successfully sent: \(description)")
-                // After saving a new habit, fetch the updated list
-                self.getSavedHabits()  // Reload habits to reflect the newly added one
+                self.getSavedHabits()
             }
         }
     }
+
     
     func updateHabitCompletion(_ habit: HabitResponse.ResponseData) {
         let habitRef = dataBase.collection("savedHabits").document(habit.id)
