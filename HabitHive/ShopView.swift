@@ -16,7 +16,11 @@ struct GiftCard: Identifiable {
 struct ShopView: View {
     @State private var userPoints: Int = 500
     @State private var showPopup = false
+    @State private var showRedeemedPopup = false
     @State private var selectedGiftCard: GiftCard? = nil
+    @State private var redeemedCards: [GiftCard] = [] // Track redeemed cards
+    @State private var showRedemptionCodePopup = false
+    @State private var redemptionCode: String = ""
 
     let giftCards = [
         GiftCard(name: "Amazon Gift Card", pointCost: 300, imageName: "amazon_gift_card"),
@@ -33,6 +37,17 @@ struct ShopView: View {
                         .font(.title)
                         .padding()
                     
+                    Button(action: {
+                        showRedeemedPopup = true
+                    }) {
+                        Text("View Redeemed Cards")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                            .padding(.bottom)
+                    }
+
                     List(giftCards) { card in
                         HStack {
                             Image(card.imageName)
@@ -72,7 +87,7 @@ struct ShopView: View {
                 }
                 .navigationTitle("Redeem Gift Cards")
                 
-                // Pop-Up Overlay
+                // Gift Card Redeem Pop-Up
                 if showPopup, let giftCard = selectedGiftCard {
                     Color.black.opacity(0.4)
                         .edgesIgnoringSafeArea(.all)
@@ -113,6 +128,100 @@ struct ShopView: View {
                     .cornerRadius(20)
                     .shadow(radius: 20)
                 }
+                
+                // Redeemed Cards Pop-Up
+                if showRedeemedPopup {
+                    Color.black.opacity(0.4)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            showRedeemedPopup = false
+                        }
+
+                    VStack {
+                        Text("Redeemed Gift Cards")
+                            .font(.title)
+                            .padding()
+                        
+                        if redeemedCards.isEmpty {
+                            Text("No gift cards redeemed yet.")
+                                .foregroundColor(.gray)
+                                .padding()
+                        } else {
+                            List(redeemedCards) { card in
+                                HStack {
+                                    Image(card.imageName)
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                        .cornerRadius(8)
+                                    
+                                    Text(card.name)
+                                        .font(.headline)
+                                    
+                                    Spacer()
+                                }
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    generateRedemptionCode()
+                                    showRedemptionCodePopup = true
+                                }
+                            }
+                            .frame(height: 200) // Limit the height of the list
+                        }
+                        
+                        Button(action: {
+                            showRedeemedPopup = false
+                        }) {
+                            Text("Close")
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .padding(.horizontal)
+                        }
+                    }
+                    .frame(width: 300, height: 400)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(radius: 20)
+                }
+                
+                // Redemption Code Pop-Up
+                if showRedemptionCodePopup {
+                    Color.black.opacity(0.4)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            showRedemptionCodePopup = false
+                        }
+
+                    VStack {
+                        Text("Redemption Code")
+                            .font(.title)
+                            .padding(.bottom, 10)
+                        
+                        Text(redemptionCode)
+                            .font(.headline)
+                            .padding()
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(10)
+                        
+                        Button(action: {
+                            showRedemptionCodePopup = false
+                        }) {
+                            Text("Close")
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .padding(.horizontal)
+                        }
+                    }
+                    .frame(width: 300, height: 200)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(radius: 20)
+                }
             }
         }
     }
@@ -120,10 +229,16 @@ struct ShopView: View {
     private func redeemGiftCard(_ card: GiftCard) {
         if userPoints >= card.pointCost {
             userPoints -= card.pointCost
+            redeemedCards.append(card) // Add the card to redeemed list
             print("\(card.name) redeemed!")
         } else {
             print("Not enough points to redeem \(card.name)")
         }
+    }
+
+    private func generateRedemptionCode() {
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        redemptionCode = String((0..<10).map { _ in characters.randomElement()! })
     }
 }
 
@@ -132,4 +247,3 @@ struct Shop_Previews: PreviewProvider {
         ShopView()
     }
 }
-
