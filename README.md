@@ -122,10 +122,7 @@ HabitHive is a habit-tracking app that helps users build positive routines by ga
 
 ## Build Progress
 Progress #1: Login/Register
-<div>
-    <a href="https://submissions.us-east-1.linodeobjects.com/ios102_swiftUI/KbYNqSk0.gif">
-    </a>
-    <a href="https://submissions.us-east-1.linodeobjects.com/ios102_swiftUI/KbYNqSk0.gif">
-      <img style="max-width:300px;" src="https://submissions.us-east-1.linodeobjects.com/ios102_swiftUI/KbYNqSk0.gif">
-    </a>
-  </div>
+
+<a href="[[https://submissions.us-east-1.linodeobjects.com/ios102_swiftUI/KbYNqSk0.gif]()">
+    <img style="max-width:300px;" src="https://submissions.us-east-1.linodeobjects.com/ios102_swiftUI/KbYNqSk0.gif">
+</a>
