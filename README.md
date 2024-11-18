@@ -131,11 +131,13 @@ Progress #1: Login/Register
     </a>
   </div>
 
+Progress #2:
+
 <div>
-    <a href="https://www.loom.com/share/e61ad0234c234862aa570ae08387aab7">
+    <a href="https://www.loom.com/share/9c80ec6aacc446af9721d93dfc70cfe9">
     </a>
-    <a href="https://www.loom.com/share/e61ad0234c234862aa570ae08387aab7">
-      <img style="max-width:300px;" src="https://submissions.us-east-1.linodeobjects.com/ios102_swiftUI/KbYNqSk0.gif">
+    <a href="https://www.loom.com/share/9c80ec6aacc446af9721d93dfc70cfe9">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/9c80ec6aacc446af9721d93dfc70cfe9-6958890faed7e5c7-full-play.gif">
     </a>
   </div>
 
